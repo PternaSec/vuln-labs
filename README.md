@@ -1,6 +1,6 @@
-# Guía de Estructura de Laboratorios — PternaSec/vuln-labs
+# Guía de Estructura de Micro-Laboratorios — PternaSec/vuln-labs
 
-Este repositorio almacena los contenedores Docker y entornos de simulación interactivos para realizar las prácticas.
+Este repositorio almacena los contenedores Docker locales (Micro-Labs) que se utilizan e inician exclusivamente a través de la **PternaSec CLI**. No está pensado para uso manual, sino como fuente de datos para nuestra herramienta de línea de comandos.
 
 ## Estructura de Directorios
 
@@ -24,6 +24,9 @@ Cada subcarpeta de laboratorio debe contener un `README.md` con un bloque superi
 ---
 title: "Log4Shell Lab"
 description: "Entorno interactivo para la explotación segura de la inyección JNDI en Log4j."
+type: docker # Puede ser "docker" (CLI) o "cloud" (TryHackMe/Web)
+difficulty: advanced # beginner, intermediate, advanced, expert
+author: "PternaSec"
 category: rce
 script: log4shell
 requirements:
@@ -32,11 +35,18 @@ requirements:
 docker_image: "pternasec/log4shell:vuln"
 ---
 
-## Instrucciones de Despliegue
+## Instrucciones de Despliegue (Vía CLI)
 
-1. Clona este repositorio.
-2. Ejecuta `docker-compose up -d` en tu terminal local.
-3. El laboratorio estará disponible en `http://localhost:8080`.
+**No es necesario clonar este repositorio ni ejecutar Docker manualmente.**
+
+Para iniciar cualquier laboratorio, utiliza nuestra herramienta de consola:
+1. Instala la CLI: `npm install -g pternasec-cli` (Próximamente)
+2. Ejecuta el comando en tu terminal: `pterna lab start <slug-del-lab>`
+3. La herramienta se encargará de descargar el `docker-compose.yml`, configurarlo y levantarlo automáticamente.
+
+Ejemplo:
+```bash
+pterna lab start log4shell
 ```
 
 ---
